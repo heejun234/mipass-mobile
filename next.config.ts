@@ -1,7 +1,42 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 's3.ap-northeast-2.amazonaws.com',
+      },
+    ],
+  },
+  output: 'standalone',
+  webpack(config) {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+
+    return config;
+  },
+
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/select-organization',
+        permanent: false,
+      },
+    ];
+  },
+
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'],
+        as: '*.js',
+      },
+    },
+  },
 };
 
 export default nextConfig;
