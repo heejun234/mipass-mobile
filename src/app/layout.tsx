@@ -38,8 +38,8 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className='min-h-full flex flex-col'>
-        <div className='flex flex-col flex-1 items-center justify-cente'>
-          <main className='flex flex-1 w-full max-w-3xl flex-col items-center justify-between p-6 '>
+        <div className='flex flex-col flex-1 items-center justify-center'>
+          <main className='flex flex-1 w-full max-w-xl flex-col p-6 '>
             {children}
           </main>
         </div>
