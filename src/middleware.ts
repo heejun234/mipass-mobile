@@ -62,7 +62,7 @@ export default auth((req) => {
   }
 
   // 로그인된 사용자가 login 페이지 접근 시
-  if (pathname.startsWith('/login') && req.auth) {
+  /*  if (pathname.startsWith('/login') && req.auth) {
     // 세션 에러가 있으면 쿠키 삭제하고 로그인 페이지에 머물기
     if (req.auth.error) {
       return clearAuthCookies(NextResponse.next());
@@ -82,7 +82,7 @@ export default auth((req) => {
 
     const selectOrgUrl = new URL('/select-organization', req.url);
     return NextResponse.redirect(selectOrgUrl);
-  }
+  } */
 
   // 로그인된 사용자가 select-organization 페이지 접근 시 프로필 타입에 따라 리다이렉트
 
