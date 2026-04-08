@@ -13,10 +13,12 @@ import { cn } from '@/lib/utils';
 interface DividerProps {
   orientation?: 'vertical' | 'horizontal';
   size?: string | number;
+  /** 부모 padding을 무시하고 뷰포트 전체 너비로 확장 (horizontal 전용) */
+  bleed?: boolean;
   className?: string;
 }
 
-const Divider = ({ orientation = 'vertical', size = 1, className }: DividerProps) => {
+const Divider = ({ orientation = 'vertical', size = 1, bleed = false, className }: DividerProps) => {
   const isVertical = orientation === 'vertical';
 
   // className에 width/height 관련 클래스가 있으면 size를 무시
@@ -27,7 +29,9 @@ const Divider = ({ orientation = 'vertical', size = 1, className }: DividerProps
 
   const baseClasses = isVertical ? 'w-px bg-neutral-300' : 'h-px bg-neutral-300';
 
-  return <div className={cn(baseClasses, className)} style={style} />;
+  const bleedClasses = !isVertical && bleed ? 'w-screen relative left-1/2 -translate-x-1/2' : '';
+
+  return <div className={cn(baseClasses, className, bleedClasses)} style={style} />;
 };
 
 export default Divider;

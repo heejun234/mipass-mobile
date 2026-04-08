@@ -63,7 +63,7 @@ const LoginForm = () => {
 
         const organizationId = session?.organizationId;
 
-        router.push(`/${organizationId}/dashboard`);
+        router.push(`/${organizationId}/organization`);
 
         /* router.refresh(); */
       }
