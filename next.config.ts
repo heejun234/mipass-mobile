@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: '/',
-        destination: '/select-organization',
+        destination: '/login',
         permanent: false,
       },
     ];

@@ -41,9 +41,7 @@ export default function RootLayout({
     >
       <body className='min-h-full flex flex-col'>
         <div className='flex flex-col flex-1 items-center justify-center'>
-          <main className='flex flex-1 w-full flex-col p-6'>
-            {children}
-          </main>
+          <main className='flex flex-1 w-full flex-col p-6'>{children}</main>
         </div>
       </body>
     </html>
