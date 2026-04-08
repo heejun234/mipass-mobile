@@ -17,10 +17,7 @@ const Header = async () => {
         </div>
 
         <div className='flex items-center gap-4'>
-          <p className='text-md font-semibold'>
-            {headerInfo.data.account.name}
-          </p>
-          <Menu />
+          <Menu accountName={headerInfo.data.account.name} />
         </div>
       </div>
       <Divider orientation='horizontal' className='w-full mt-6' bleed />

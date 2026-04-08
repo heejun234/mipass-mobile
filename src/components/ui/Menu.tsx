@@ -9,52 +9,64 @@ import {
   DropdownMenuTrigger,
 } from './dropdown-menu';
 import MenuIcon from '@/public/icons/menu.svg';
-import { useSession } from 'next-auth/react';
+import { signOut, useSession } from 'next-auth/react';
 
-const Menu = () => {
+type MenuProps = {
+  accountName: string;
+};
+
+const Menu = ({ accountName }: MenuProps) => {
   const router = useRouter();
   const session = useSession();
   const organizationId = session.data?.organizationId;
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <MenuIcon />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
-        className='w-40'
-        align='end'
-        alignOffset={0}
-        sideOffset={5}
+    <>
+      <p
+        className='text-md font-semibold'
+        onClick={() => signOut({ redirect: true, callbackUrl: '/login' })}
       >
-        <DropdownMenuGroup>
-          <DropdownMenuItem
-            onClick={() => router.push(`/${organizationId}/organization`)}
-          >
-            조직 관리
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => router.push(`/${organizationId}/user`)}
-          >
-            회원 관리
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => router.push(`/${organizationId}/auth-history`)}
-          >
-            인증 이력 관리
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => router.push(`/${organizationId}/equipment`)}
-          >
-            장비 관리
-          </DropdownMenuItem>
-          <DropdownMenuItem
-            onClick={() => router.push(`/${organizationId}/partner`)}
-          >
-            협력사 관리
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        {accountName}
+      </p>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <MenuIcon />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent
+          className='w-40'
+          align='end'
+          alignOffset={0}
+          sideOffset={5}
+        >
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              onClick={() => router.push(`/${organizationId}/organization`)}
+            >
+              조직 관리
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => router.push(`/${organizationId}/user`)}
+            >
+              회원 관리
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => router.push(`/${organizationId}/auth-history`)}
+            >
+              인증 이력 관리
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => router.push(`/${organizationId}/equipment`)}
+            >
+              장비 관리
+            </DropdownMenuItem>
+            <DropdownMenuItem
+              onClick={() => router.push(`/${organizationId}/partner`)}
+            >
+              협력사 관리
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </DropdownMenuContent>
+      </DropdownMenu>
+    </>
   );
 };
 
